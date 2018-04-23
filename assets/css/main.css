@@ -41,6 +41,16 @@ h3.title {
 .findOut {
   border-radius: 0px;
 }
+.overlay {
+  background: rgba(88, 90, 96, 0.77);
+  height: 100%;
+}
+.landing-page .header .header-filter {
+  height: 100vh;
+}
+.landing-page .header .header-filter1 {
+  height: 70vh;
+}
 /************ Hiring Pattern*************/
 #easierArtisans {
   padding: 40px;
@@ -57,6 +67,19 @@ p.title-text {
   font-size: 17px;
   text-align: center;
 }
+.panel-default > .panel-heading, .panel:not([class*="panel-"]) > .panel-heading {
+  color: rgb(255, 255, 255);
+}
+.panel > .panel-heading, .panel.panel-default > .panel-heading {
+  background-color: #9c27b0;
+}
+a, a:hover, a:focus {
+  color: #ffffff;
+}
+.header .header-filter1 {
+  background-image: url('../img/background/try.jpg');
+}
+
 /************ footer.html**************/
 footer {
    padding: 0;
