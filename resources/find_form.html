@@ -34,14 +34,25 @@
         <div class="col-md-4">
           <div class="form-group ">
             <label class="control-label">Time</label>
-            <input type="time" class="form-control" name="time">
+            <select class="form-control" name="date">
+              <option disabled="yes">Select time</option>
+              <option value="9am">9 am</option>
+              <option value="10am">10 am</option>
+              <option value="11am">11 am</option>
+              <option value="12noon">12 noon</option>
+              <option value="1pm">1 pm</option>
+              <option value="2pm">2 pm</option>
+              <option value="3pm">3 pm</option>
+              <option value="4pm">4 pm</option>
+              <option value="5pm">5 pm</option>
+            </select>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label class="control-label">Mode of payment</label>
             <select class="form-control" name="payment">
-              <option value="">Select payment</option>
+              <option disabled="yes">Select payment</option>
               <option value="Cash">Cash</option>
               <option value="Onlines">Online</option>
             </select>
@@ -52,13 +63,13 @@
         <div class="col-md-6">
           <div class="form-group label-floating">
             <label class="control-label">Address</label>
-            <textarea class="form-control" name="address" rows="3"></textarea>
+            <textarea class="form-control" name="address" rows="4"></textarea>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group label-floating">
             <label class="control-label">Brief Description of Job</label>
-            <textarea class="form-control" name="description" rows="3"></textarea>
+            <textarea class="form-control" name="description" rows="4"></textarea>
           </div>
         </div>
       </div>

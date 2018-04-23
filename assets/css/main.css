@@ -46,10 +46,20 @@ h3.title {
   padding: 40px;
   background-color: #CCCCCC;
   border-top: 1px solid #9C27B0;
-  border-bottom: 1px solid #9C27B0;
 }
-
+h4.sub-title {
+  text-align: center;
+  font-size: 23px;
+  font-weight: bold;
+  color: #9c27b0;
+}
+p.title-text {
+  font-size: 17px;
+  text-align: center;
+}
 /************ footer.html**************/
 footer {
-     padding: 0;
+   padding: 0;
+   background-color: #9c27b0;
+   color: #fff;
 }

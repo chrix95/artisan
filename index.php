@@ -57,7 +57,7 @@
 							<h1 class="title">Search for Artisans</h1>
 	            <h4>Looking for an artisian for that job, search no further. Artisian are ready to meet up with you as soon as possible, anywhere, 24/7.</h4>
 							<a href="#main-raised">
-								<button type="button" id="findBut" name="button" class="btn btn-primary">Search Artisan</button>
+								<button type="button" id="findBut" name="button" class="btn btn-primary">Find Artisan</button>
 							</a>
 						</div>
           </div>
@@ -93,10 +93,28 @@
 			</section>
 			<section id="easierArtisans">
 				<div class="container">
-					<h3 class="title text-center">Hiring Artisans just gort easier</h3>
+					<h3 class="title text-center" style="margin-bottom: 40px;">Hiring Artisans just got easier</h3>
 					<div class="row">
-						<div class="">
-
+						<div class="col-md-4">
+							<img src="assets/img/icons/describe.png" alt="" class="img img-responsive center-block" width="75px" />
+							<h4 class="sub-title">At your Convenience</h4>
+							<p class="title-text">
+								Select a time that favours your schedule for the week and let us know.
+							</p>
+						</div>
+						<div class="col-md-4">
+							<img src="assets/img/icons/describe.png" alt="" class="img img-responsive center-block" width="75px" />
+							<h4 class="sub-title">Process request</h4>
+							<p class="title-text">
+								We begin processing of your request to get the best of the best for the job based on your convenience.
+							</p>
+						</div>
+						<div class="col-md-4">
+							<img src="assets/img/icons/describe.png" alt="" class="img img-responsive center-block" width="75px" />
+							<h4 class="sub-title">We receive feedback</h4>
+							<p class="title-text">
+								Once job is completed, we expect feeback from you for total satisfaction.
+							</p>
 						</div>
 					</div>
 				</div>
