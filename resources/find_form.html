@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2 class="text-center title">Find that Artisan</h2>
+    <form class="find-form">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group label-floating">
+            <label class="control-label">Full Name</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group label-floating">
+
+            <label class="control-label">Phone number</label>
+            <input type="email" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group label-floating">
+            <select class="form-control" name="category">
+              <?php include "resources/category.html"; ?>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group ">
+            <label class="control-label">Date</label>
+            <input type="text" class="datepicker form-control" name="date">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group ">
+            <label class="control-label">Time</label>
+            <input type="time" class="form-control" name="time">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Mode of payment</label>
+            <select class="form-control" name="payment">
+              <option value="">Select payment</option>
+              <option value="Cash">Cash</option>
+              <option value="Onlines">Online</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group label-floating">
+            <label class="control-label">Address</label>
+            <textarea class="form-control" name="address" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group label-floating">
+            <label class="control-label">Brief Description of Job</label>
+            <textarea class="form-control" name="description" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 text-center">
+          <button class="btn btn-primary btn-raised">
+            Request
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

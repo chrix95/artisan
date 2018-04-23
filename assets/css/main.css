@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/************ index.html**************/
+.navbar {
+  border: 0;
+  background-color: rgba(88, 90, 96, 0.77);
+}
+a.navbar-brand {
+  font-weight: 900;
+  font-size: 30px;
+}
+.section {
+  padding: 30px ;
+}
+.landing-page .header .container {
+  padding-top: 40vh;
+  color: #FFFFFF;
+}
+.landing-page .wrapper {
+  background: #fff;
+}
+/************ Find Out Section**************/
+button#findBut {
+  border-radius: 0px;
+  border: 1px solid #9c27b0;
+  background-color: transparent;
+  color: #fff;
+  font-weight: bold;
+}
+section#hiring {
+  padding: 40px 0px;
+  background-color: #fff;
+}
+h3.title {
+  color: #9c27b0;
+  font-size: 30px;
+  letter-spacing: 0px;
+}
+.findOut {
+  border-radius: 0px;
+}
+/************ Hiring Pattern*************/
+#easierArtisans {
+  padding: 40px;
+  background-color: #CCCCCC;
+  border-top: 1px solid #9C27B0;
+  border-bottom: 1px solid #9C27B0;
+}
+
+/************ footer.html**************/
+footer {
+     padding: 0;
+}
