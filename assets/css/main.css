@@ -2,87 +2,257 @@
   margin: 0;
   padding: 0;
 }
+body {
+  color: black;
+}
 /************ index.html**************/
 .navbar {
   border: 0;
-  background-color: rgba(88, 90, 96, 0.77);
+  background-color: rgba(156, 39, 176, 1)
 }
 a.navbar-brand {
   font-weight: 900;
   font-size: 30px;
+  color: #fff;
 }
-.section {
-  padding: 30px ;
-}
-.landing-page .header .container {
-  padding-top: 40vh;
-  color: #FFFFFF;
-}
-.landing-page .wrapper {
-  background: #fff;
-}
-/************ Find Out Section**************/
-button#findBut {
-  border-radius: 0px;
-  border: 1px solid #9c27b0;
-  background-color: transparent;
+.navbar-nav>li>a {
   color: #fff;
   font-weight: bold;
+  font-size: 15px;
 }
-section#hiring {
-  padding: 40px 0px;
+.nav>li>a:hover, .nav>li>a:focus {
+  text-decoration: none;
   background-color: #fff;
-}
-h3.title {
   color: #9c27b0;
-  font-size: 30px;
-  letter-spacing: 0px;
 }
-.findOut {
-  border-radius: 0px;
+option, optgroup {
+  background-color: #9c27b0;
+  color: #fff;
 }
-.overlay {
-  background: rgba(88, 90, 96, 0.77);
+/************ Carousel Section**************/
+.main-header-section {
+  padding: 120px 0px 80px;
+  position: relative;
+  background-size: cover;
   height: 100%;
 }
-.landing-page .header .header-filter {
-  height: 100vh;
+.main-header-section .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(17, 17, 17, 0.7);
 }
-.landing-page .header .header-filter1 {
-  height: 70vh;
+.header-content-block, .requestForm {
+  position: relative;
+  z-index: 99;
 }
-/************ Hiring Pattern*************/
-#easierArtisans {
-  padding: 40px;
-  background-color: #CCCCCC;
-  border-top: 1px solid #9C27B0;
+.requestForm .title {
+  color: #fff;
+  margin: 0px 0px 20px;
+}
+.requestForm label {
+  color: #fff;
+  font-weight: 300;
+}
+.header-title-block h2 {
+  font-size: 46px;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 11px;
+}
+.header-title-block p {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(17, 17, 17, 0.7);
+}
+button.btn.btn-how {
+  border-radius: 0px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #9c27b0;
+  color: #fff;
+}
+button.btn.btn-how:hover {
+  background-color: #9c27b0;
+}
+.requestForm.form-control {
+  border-radius: 0px;
+  background-color: transparent;
+  padding: 12px 14px;
+  height: auto;
+  color: #fff;
+}
+.requestForm.form-control:focus {
+  border-color: #9c27b0;
+}
+select.form-control.deb {
+  color: #fff;
+}
+.form-control {
+  border-radius: 0px;
+  background-color: transparent;
+  padding: 12px 14px;
+  height: auto;
+  color: #4e1358;
+  font-size: 15px;
+}
+.form-control:focus {
+  border-color: #9c27b0;
+}
+/*::-webkit-input-placeholder {
+   color: #fff !important;
+	 font-size: 15px;
+	 font-weight: lighter;
+}
+:-moz-placeholder {
+   color: #fff !important;
+}
+::-moz-placeholder {
+   color: #fff !important;
+}
+:-ms-input-placeholder {
+   color: #fff !important;
+}*/
+/************ Working Section**************/
+#work, #hiring, #contact {
+  padding: 70px 0px;
+}
+h2.header-how-work {
+  font-size: 32px;
+  color: #9c27b0;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-align: center;
 }
 h4.sub-title {
   text-align: center;
-  font-size: 23px;
-  font-weight: bold;
+  font-size: 20px;
   color: #9c27b0;
+  font-weight: bold;
 }
 p.title-text {
-  font-size: 17px;
-  text-align: center;
+  font-size: 18px;
 }
-.panel-default > .panel-heading, .panel:not([class*="panel-"]) > .panel-heading {
-  color: rgb(255, 255, 255);
+button.btn.btn-send-message {
+  border-radius: 0px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #9c27b0;
+  color: #9c27b0;
 }
-.panel > .panel-heading, .panel.panel-default > .panel-heading {
+button.btn.btn-send-message:hover {
   background-color: #9c27b0;
+  color: #fff;
 }
-a, a:hover, a:focus {
-  color: #ffffff;
+textarea {
+  resize: none;
 }
-.header .header-filter1 {
-  background-image: url('../img/background/try.jpg');
+
+/************ Hiring Got Easier *************/
+#hiring {
+  padding: 70px 0px;
+  background-color: #d9d9d9;
+}
+h3.title {
+  font-size: 24px;
+  color: #9c27b0;
+}
+.panel-default>.panel-heading {
+  color: #fff;
+  background-color: #9c27b0;
+  border-color: #9c27b0;
+  border-radius: 0px;
+}
+button.btn.findOut {
+  border-radius: 0px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #9c27b0;
+  color: #9c27b0;
+}
+button.btn.findOut:hover {
+  background-color: #9c27b0;
+  color: #fff;
+}
+/************ Contact Us *************/
+.contact-header-section {
+  padding: 120px 0px 0px;
+  position: relative;
+  background-size: cover;
+  height: 70vh;
+  background-image: url('../img/background/contactus.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/************ Modal Settings **************/
+.modal-content {
+  border-radius: 0px;
+}
+.modal-header {
+  background-color: #4e1358;
+  color: #fff;
+  border-radius: 0px;
+}
+.regForm .form-control {
+  padding: 7px 14px;
+}
+label.error {
+  font-weight: 300;
+  color: red;
+  font-size: 12px;
+}
+.close {
+  color: #fff ;
+  opacity: .8;
 }
 
 /************ footer.html**************/
 footer {
-   padding: 0;
-   background-color: #9c27b0;
-   color: #fff;
+  background-color: #9c27b0;
+  color: #fff;
+}
+.footer nav ul li {
+  float: left;
+  padding: 20px;
+}
+.footer nav ul {
+  list-style: none;
+  text-decoration: none;
+}
+footer nav>ul>li>a {
+  color: #fff;
+}
+.copyright {
+  padding: 20px;
+}
+/************ footer.html**************/
+@media (max-width: 1400px) {
+  .main-header-section .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(17, 17, 17, 0.7);
+  }
+}
+@media (max-width: 376px) {
+  .main-header-section .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 105%;
+    width: 100%;
+    background: rgba(17, 17, 17, 0.7);
+  }
 }
