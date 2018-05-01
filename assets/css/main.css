@@ -63,7 +63,7 @@ option, optgroup {
   margin-bottom: 11px;
 }
 .header-title-block p {
-  font-size: 18px;
+  font-size: 16px;
   color: #fff;
   margin-bottom: 20px;
 }
@@ -103,7 +103,7 @@ select.form-control.deb {
   background-color: transparent;
   padding: 12px 14px;
   height: auto;
-  color: #4e1358;
+  color: #9C27B0;
   font-size: 15px;
 }
 .form-control:focus {
@@ -194,6 +194,27 @@ button.btn.findOut:hover {
   background-size: contain;
   background-repeat: no-repeat;
 }
+.contact-widget p span {
+  display: inline-block;
+}
+.fa {
+  font-size: 20px;
+  padding: 9px;
+  color: #9c27b0;
+}
+.contact-widget p i.fa {
+  vertical-align: top;
+}
+.contact-section .contact-widget ul.social li {
+  margin: 0 10px 0 0;
+}
+.social-with-label span {
+  display: inline-block;
+}
+ul.social, ul.social li {
+  display: inline-block;
+  font-size: 0px;
+}
 /************ Modal Settings **************/
 .modal-content {
   border-radius: 0px;
@@ -231,6 +252,10 @@ footer {
 }
 footer nav>ul>li>a {
   color: #fff;
+}
+footer nav>ul>li>a:hover, footer nav>ul>li>a:focus {
+  color: #ffffff;
+  text-decoration: none;
 }
 .copyright {
   padding: 20px;

@@ -39,5 +39,5 @@
 <script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="assets/js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
 <script src="assets/js/index.js" type="text/javascript"></script>
-
+<script src="assets/js/indexValidations.js" type="text/javascript"></script>
 </html>
