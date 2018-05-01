@@ -17,30 +17,62 @@
       $city = htmlentities(strip_tags(trim($_POST['city'])));
       $address = htmlentities(strip_tags(trim($_POST['address'])));
 
-      // hash password using password_hash
-      $hash_password = password_hash($password, PASSWORD_DEFAULT);
+      // Confirm if email already exist
+      $check_email = $conn->prepare("SELECT * from registration WHERE email=:email");
+      $check_email->bindParam(":email", $email);
+      $check_email->execute();
+      $email_count = $check_email->rowCount();
 
-      // insert record into database
-      $store = $conn->prepare("INSERT INTO registration (surname, othername, email, phone, password, state, city, address) VALUES (:surname, :othername, :email, :phone, :password, :state, :city, :address)");
-      $store->bindParam(":surname", $surname);
-      $store->bindParam(":othername", $othername);
-      $store->bindParam(":email", $email);
-      $store->bindParam(":phone", $phone);
-      $store->bindParam(":password", $hash_password);
-      $store->bindParam(":state", $state);
-      $store->bindParam(":city", $city);
-      $store->bindParam(":address", $address);
-      $success = $store->execute();
+      if ($email_count == 0 ) {
 
-      if ($success) {
-        echo "You are registered successfully";
+        // Confirm if phone number already exist
+        $check_phone = $conn->prepare("SELECT * from registration WHERE phone=:phone");
+        $check_phone->bindParam(":phone", $phone);
+        $check_phone->execute();
+        $phone_count = $check_phone->rowCount();
+
+        if ($phone_count == 0) {
+
+          // hash password using password_hash
+          $hash_password = password_hash($password, PASSWORD_DEFAULT);
+
+          // insert record into database
+          $store = $conn->prepare("INSERT INTO registration (surname, othername, email, phone, password, state, city, address) VALUES (:surname, :othername, :email, :phone, :password, :state, :city, :address)");
+          $store->bindParam(":surname", $surname);
+          $store->bindParam(":othername", $othername);
+          $store->bindParam(":email", $email);
+          $store->bindParam(":phone", $phone);
+          $store->bindParam(":password", $hash_password);
+          $store->bindParam(":state", $state);
+          $store->bindParam(":city", $city);
+          $store->bindParam(":address", $address);
+          $success = $store->execute();
+
+          if ($success) {
+
+            echo "You are registered successfully";
+
+          } else {
+
+            echo "Server error, try again later";
+
+          }
+
+        } else {
+
+          echo "Phone number already registered";
+
+        }
+
       } else {
-        echo "Server error, try again later";
+
+        echo "Email address already exist";
+
       }
 
     }
 
-    // contact us form information processor
+    // contact us form script processor
     if (isset($_POST['sendMessage'])) {
       // collect posted data
       $name = htmlentities(strip_tags(trim($_POST['name'])));

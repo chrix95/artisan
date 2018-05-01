@@ -28,7 +28,7 @@
             </button>
           </div>
         </div>
-        <form id="artisanReg" class="regForm" action="resources/script.php" method="POST">
+        <form id="artisanReg" class="regForm" action="resources/script.php" method="POST" autocomplete="off">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -109,7 +109,7 @@
             </div>
           </div>
         </form>
-        <form id="artisanLogin" class="regForm" action="modalForm.php" method="POST">
+        <form id="artisanLogin" class="regForm" action="resources/script.php" method="POST" autocomplete="off">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">

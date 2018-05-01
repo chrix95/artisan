@@ -73,7 +73,19 @@ $(document).ready(function() {
   				$('p#message').css("color", "red");
   				$('p#message').text(data);
   				console.log(data);
-  				// setTimeout("window.location = '../main/wp-admin/changepassword.php'", 2000);
+          setTimeout("$('p#message').text('')", 2000);
+  			} else if (data == 'Phone number already registered') {
+
+  				$('p#message').css("color", "red");
+  				$('p#message').text(data);
+  				console.log(data);
+          setTimeout("$('p#message').text('')", 2000);
+  			} else if (data == 'Email address already exist') {
+
+  				$('p#message').css("color", "red");
+  				$('p#message').text(data);
+  				console.log(data);
+          setTimeout("$('p#message').text('')", 2000);
   			}
 
   		})
