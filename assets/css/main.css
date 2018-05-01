@@ -252,7 +252,7 @@ label.error {
   color: #fff ;
   opacity: .8;
 }
-#artisanLogin {
+#artisanReg, #artisanLogin {
   display: none;
 }
 /************ footer.html**************/

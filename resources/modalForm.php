@@ -10,6 +10,24 @@
         <h4 class="modal-title" id="myModalLabel">JOIN US TODAY</h4>
       </div>
       <div class="modal-body">
+        <div id="modalSelect" class="row">
+          <div class="col-xs-6 col-md-6 text-center">
+            <button type="button" name="button" id="login" class="btn btn-primary findOut">
+              <img src="assets/img/icons/59.png" alt="" class="img-responsive center-block" width="35%"/>
+              <h3>
+                Login
+              </h3>
+            </button>
+          </div>
+          <div class="col-xs-6 col-md-6 text-center">
+            <button type="button" name="button" id="register" class="btn btn-primary findOut">
+              <img src="assets/img/icons/79.png" alt="" class="img-responsive center-block" width="35%"/>
+              <h3>
+                Register
+              </h3>
+            </button>
+          </div>
+        </div>
         <form id="artisanReg" class="regForm" action="resources/script.php" method="POST">
           <div class="row">
             <div class="col-md-6">
@@ -86,7 +104,36 @@
             <div class="col-md-6">
               <div class="pull-right">
                 <button type="submit" name="submitReg" class="btn findOut">Register</button>
-                <button type="button" class="btn findOut" data-dismiss="modal">Close</button>
+                <button type="button" class="btn findOut" id="back2">Back</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form id="artisanLogin" class="regForm" action="modalForm.php" method="POST">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Email or Phone</label>
+                <input type="text" class="form-control" placeholder="Email or Phone" name="email">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Password</label>
+                <input type="password" id="loginPassword" class="form-control" placeholder="Password" name="password">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p id="message" style="color: red"></p>
+            </div>
+            <div class="col-md-6">
+              <div class="pull-right">
+                <button type="submit" name="submitLogin" class="btn findOut">Login</button>
+                <button type="button" class="btn findOut" id="back1">Back</button>
               </div>
             </div>
           </div>
