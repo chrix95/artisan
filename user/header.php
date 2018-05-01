@@ -1,3 +1,15 @@
+<?php
+	try{
+		session_start();
+		//Check whether the session variable email or details is present or not
+		if(!isset($_SESSION['email']) || !isset($_SESSION['details'])) {
+			header("location: logout.php");
+			exit();
+		}
+	} catch (Exception $e) {
+		echo "Problem Somewhere: ". $e->getMessage();
+	}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,7 +52,7 @@
 							<a href="#">Settings</a>
 						</li>
 						<li>
-							<a href="contact.php">Sign Out</a>
+							<a href="logout.php">Sign Out</a>
 						</li>
       		</ul>
       	</div>

@@ -72,6 +72,46 @@
 
     }
 
+    // Login in form script
+    if (isset($_POST['submitLogin'])) {
+
+      $email	= htmlentities(strip_tags(trim($_POST['email'])));
+      $password = htmlentities(strip_tags(trim($_POST['password'])));
+
+      // confirm if the email exist
+      $query_email = $conn->prepare("SELECT * FROM registration WHERE email =:email");
+      $query_email->bindParam(":email", $email);
+      $query_email->execute();
+      $check_email_exist = $query_email->rowCount();
+
+      if ($check_email_exist == 1) {
+
+        $get_details = $query_email->fetch(PDO::FETCH_OBJ);
+        $retrieved_password = $get_details->password;
+
+        $check_password = password_verify($password, $retrieved_password);
+
+        if ($check_password) {
+
+          session_start();
+          $_SESSION['email'] = $email;
+          $_SESSION['details'] = $get_details;
+
+          echo "Login Successful. Please wait...";
+
+        } else {
+
+          echo "Password incorrect";
+
+        }
+
+      } else {
+
+        echo "Sorry, email doesnt exist";
+      }
+
+    }
+
     // contact us form script processor
     if (isset($_POST['sendMessage'])) {
       // collect posted data

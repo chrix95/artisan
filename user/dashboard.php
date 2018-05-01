@@ -8,7 +8,7 @@
         </div>
         <div class="user-info">
           <h5>
-            Okokon, Christopher Ntuk
+            <?php echo $_SESSION['details']->surname. ", " .$_SESSION['details']->othername; ?>
           </h5>
           <span>UI Designer</span>
         </div>
@@ -33,7 +33,14 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
-        <h3>Hi, Christopher</h3>
+        <h3>
+          <?php
+            $get = $_SESSION['details']->othername;
+
+            $name = explode(" ", $get);
+
+            echo "Hi, " .$name[0]; ?>
+        </h3>
       </div>
       <div class="col-md-6">
         <h4>This is your dashboard</h4>

@@ -1,10 +1,12 @@
 <?php
-session_start();
 
-	if("username"){
-		session_destroy();
-		unset($_SESSION['SESS_MEMBER_ID']);
-		// unset($_SESSION['SESS_MEMBER_REG_NO']);
+	session_start();
+
+	if("email"){
+		unset($_SESSION['details']);
+		unset($_SESSION['email']);
 		header("location: ../index.php");
+		session_destroy();
 	}
+
 ?>
