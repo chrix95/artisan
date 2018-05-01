@@ -42,92 +42,33 @@ $(document).ready(function() {
       }
   });
 
-  $('#artisanReg').validate({
-  	rules: {
-  		surname: {
-  			required: true
-  		},
-      othername: {
-  			required: true
-  		},
-      email: {
-  			required: true,
-  			email: true
-  		},
-      phone: {
-  			required: true
-  		},
-      password: {
-  			required: true
-  		},
-  		cpassword: {
-  			required: true,
-        equalTo: '#password'
-  		},
-      state: {
-  			required: true
-  		},
-      city: {
-  			required: true
-  		},
-      address: {
-  			required: true
-  		}
-  	},
-    messages: {
-      cpassword: {
-        equalTo: 'Password match failed',
-      }
-    },
-
-    submitHandler: function() {
-
-  		var that = $('#artisanReg'),
-  				url = that.attr('action'),
-  				type = that.attr('method'),
-  				data = {};
-
-  		that.find('[name]').each(function(index, value){
-  				var that = $(this),
-  					name = that.attr('name'),
-  					value = that.val();
-
-  				data[name] = value;
-  		});
-
-  		$.ajax({
-  			url: 'resources/script.php',
-  			type: 'POST',
-  			data: data
-  		})
-
-  		.done(function(data){
-  			if (data == 'You are registered successfully') {
-  				$('p#message').css({
-            "color":"green",
-            "font-size": "18px"
-          });
-  				$('p#message').text(data);
-  				console.log(data);
-  				setTimeout("window.location = 'index.php'", 2000);
-  			} else if (data == 'Server error, try again later') {
-
-  				$('p#message').css("color", "red");
-  				$('p#message').text(data);
-  				console.log(data);
-  				// setTimeout("window.location = '../main/wp-admin/changepassword.php'", 2000);
-  			}
-
-  		})
-
-  		.fail(function(data){
-  			console.log("error encountered");
-  		});
-
-  	}
-
+  $('#login').click(function (){
+    $('#modalSelect').hide();
+    $('#artisanLogin').show();
   });
-
-
+  $('#register').click(function (){
+    $('#modalSelect').hide();
+    $('#artisanReg').show();
+  });
+  $('#back1').click(function (){
+    $('#modalSelect').show();
+    $('#artisanReg').hide();
+    $('#artisanLogin').hide();
+  });
+  $('#back2').click(function (){
+    $('#modalSelect').show();
+    $('#artisanReg').hide();
+    $('#artisanLogin').hide();
+  });
+  $('#requestBtn').click(function (){
+    $('.requestForm').css("display","block");
+    $('#closeBtn').css("display","block");
+    $('#requestBtn').css("display","none");
+  });
+  $('#closeBtn').click(function (){
+    $('.requestForm').css("display","none");
+    $('#closeBtn').css("display","none");
+    $('#requestBtn').css("display","block");
+  });
 
 });

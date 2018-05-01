@@ -3,18 +3,20 @@
 <div id="main-header-section" class="main-header-section">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 col-md-5">
+      <div class="col-sm-12 col-md-5">
         <div class="header-content-block">
           <div class="header-title-block">
               <h2>Search for Artisans</h2>
               <p>Looking for an artisian for that job, search no further. Artisian are ready to meet up with you as soon as possible, anywhere, 24/7.</p>
               <a href="#work">
-                <button type="button" name="button" class="btn btn-how">How it works</button>
+                <button type="button" name="button" class="btn btn-how btn-lg">How it works</button>
               </a>
+              <button type="button" name="request" id="requestBtn" class="btn btn-how btn-lg hidden-md hidden-lg">Request</button>
+              <button type="button" name="request" id="closeBtn" class="btn btn-how btn-lg hidden-md hidden-lg">Hide</button>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-7 requestForm">
+      <div class="col-sm-12 col-md-7 requestForm">
         <?php include 'resources/findForm.html'; ?>
       </div>
     </div>

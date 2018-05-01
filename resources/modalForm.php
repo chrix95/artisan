@@ -10,7 +10,7 @@
         <h4 class="modal-title" id="myModalLabel">JOIN US TODAY</h4>
       </div>
       <div class="modal-body">
-        <form id="artisanReg" class="regForm" action="modalForm.php" method="POST">
+        <form id="artisanReg" class="regForm" action="resources/script.php" method="POST">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
