@@ -28,21 +28,21 @@
   <div class="container">
     <div class="row">
       <h2 class="header-how-work">How it Works</h2>
-      <div class="col-md-4">
+      <div class="col-sm-4 col-md-4">
         <img src="assets/img/icons/describe.png" alt="" class="img img-responsive center-block" width="75px" />
         <h4 class="sub-title">At your Convenience</h4>
         <p class="title-text text-center">
           Select a time that favours your schedule for the week and let us know.
         </p>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-4 col-md-4">
         <img src="assets/img/icons/negotiate.svg" alt="" class="img img-responsive center-block" width="75px" />
         <h4 class="sub-title">Process request</h4>
         <p class="title-text text-center">
           We begin processing of your request to get the best of the best for the job based on your convenience.
         </p>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-4 col-md-4">
         <img src="assets/img/icons/complete.svg" alt="" class="img img-responsive center-block" style="background-color: #61A8D2;border-radius: 17px;" width="75px" />
         <h4 class="sub-title">We receive feedback</h4>
         <p class="title-text text-center">

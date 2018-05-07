@@ -26,6 +26,7 @@
 	<!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="../assets/css/jquery.datetimepicker.css" rel="stylesheet" />
+	<link href="../assets/css/main.css" rel="stylesheet"/>
 	<link href="../assets/css/index.css" rel="stylesheet"/>
 
 </head>
@@ -49,7 +50,7 @@
 							<a href="dashboard.php">Dashoard</a>
 						</li>
 						<li>
-							<a href="#">Settings</a>
+							<a href="settings.php">Settings</a>
 						</li>
 						<li>
 							<a href="logout.php">Sign Out</a>

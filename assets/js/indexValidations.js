@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  // artisan registration form validation
   $('#artisanReg').validate({
   	rules: {
   		surname: {
@@ -98,6 +99,7 @@ $(document).ready(function() {
 
   });
 
+  // artisan login  form validation
   $('#artisanLogin').validate({
     rules: {
       email: {
@@ -163,6 +165,7 @@ $(document).ready(function() {
 
   });
 
+  // contact form validation
   $('#contactForm').validate({
   	rules: {
   		name: {
@@ -226,5 +229,74 @@ $(document).ready(function() {
   	}
 
   });
+
+  // Settings functionality
+$('#passUpdate').validate({
+  rules: {
+    curpass: {
+      required: true
+    },
+    newpass: {
+      required: true
+    },
+    conpass: {
+      required: true,
+      equalTo: '#newpass'
+    }
+  },
+  submitHandler: function() {
+
+    var that = $('#passUpdate'),
+        url = that.attr('action'),
+        type = that.attr('method'),
+        data = {};
+
+    that.find('[name]').each(function(index, value){
+        var that = $(this),
+          name = that.attr('name'),
+          value = that.val();
+
+        data[name] = value;
+    });
+
+    $.ajax({
+      url: '../resources/script.php',
+      type: 'POST',
+      data: data
+    })
+
+    .done(function(data){
+      if (data == 'Password changed successfully') {
+        $('p#message').css({
+          "color":"#9C27B0",
+          "font-size": "15px"
+        });
+        $('p#message').text(data);
+        setTimeout("$('p#message').text('')", 3000);
+      } else if (data == 'Password change failed') {
+
+        $('p#message').css({
+          "color":"#fff",
+          "font-size": "15px"
+        });
+        $('p#message').text(data);
+        setTimeout("$('p#message').text('')", 3000);
+      } else if (data == 'Current password incorrect') {
+
+        $('p#message').css("color", "red");
+        $('p#message').text(data);
+        console.log(data);
+        setTimeout("$('p#message').text('')", 3000);
+      }
+
+    })
+
+    .fail(function(data){
+      console.log("error encountered");
+    });
+
+  }
+
+});
 
 });

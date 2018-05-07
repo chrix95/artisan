@@ -13,7 +13,7 @@
         <div id="modalSelect" class="row">
           <div class="col-xs-6 col-md-6 text-center">
             <button type="button" name="button" id="login" class="btn btn-primary findOut">
-              <img src="assets/img/icons/59.png" alt="" class="img-responsive center-block" width="35%"/>
+              <img src="assets/img/icons/59.png" alt="" class="img img-responsive center-block" width="35%"/>
               <h3>
                 Login
               </h3>
@@ -21,7 +21,7 @@
           </div>
           <div class="col-xs-6 col-md-6 text-center">
             <button type="button" name="button" id="register" class="btn btn-primary findOut">
-              <img src="assets/img/icons/79.png" alt="" class="img-responsive center-block" width="35%"/>
+              <img src="assets/img/icons/79.png" alt="" class="img img-responsive center-block" width="35%"/>
               <h3>
                 Register
               </h3>
@@ -33,7 +33,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Surname</label>
-                <input type="text" class="form-control" placeholder="Surname" name="surname">
+                <input type="text" class="form-control" placeholder="Surname" name="surname" autofocus="yes">
               </div>
             </div>
             <div class="col-md-6">
@@ -114,7 +114,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label">Email or Phone</label>
-                <input type="text" class="form-control" placeholder="Email or Phone" name="email">
+                <input type="text" class="form-control" placeholder="Email or Phone" name="email" autofocus="yes">
               </div>
             </div>
           </div>

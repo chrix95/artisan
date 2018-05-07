@@ -140,7 +140,49 @@
 
     }
 
+    // password upadte script for logged users
+    if (isset($_POST['passupdate'])) {
 
+      $email	= htmlentities(strip_tags(trim($_POST['email'])));
+      $curpassword = htmlentities(strip_tags(trim($_POST['curpass'])));
+      $newpassword = htmlentities(strip_tags(trim($_POST['newpass'])));
+
+      // confirm if the email exist
+      $query_email = $conn->prepare("SELECT * FROM registration WHERE email=:email");
+      $query_email->bindParam(":email", $email);
+      $query_email->execute();
+      // fetch password
+      $get_details = $query_email->fetch(PDO::FETCH_OBJ);
+      $retrieved_password = $get_details->password;
+
+      $check_password = password_verify($curpassword, $retrieved_password);
+
+      if ($check_password) {
+
+        // hash new password and update record
+        $hashPassord = password_hash($newpassword, PASSWORD_DEFAULT);
+        $update_password = $conn->prepare("UPDATE registration SET password=:password WHERE email=:email");
+        $update_password->bindParam(":password", $hashPassord);
+        $update_password->bindParam(":email", $email);
+        $success = $update_password->execute();
+
+        if ($success) {
+
+          echo "Password changed successfully";
+
+        } else {
+
+          echo "Password change failed";
+
+        }
+
+      } else {
+
+        echo "Current password incorrect";
+
+      }
+
+    }
 
   } catch (Exception $e) {
 

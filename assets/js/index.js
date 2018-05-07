@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  // script to change the landing page background images using fadeOut effect
   $(".main-header-section").backgroundCycle({
       imageUrls: [
         'assets/img/carousel/slide1.jpg',
@@ -42,33 +43,61 @@ $(document).ready(function() {
       }
   });
 
+  // display login modal on clicking login button
   $('#login').click(function (){
     $('#modalSelect').hide();
     $('#artisanLogin').show();
   });
+
+  // display registration modal on clicking registration button
   $('#register').click(function (){
     $('#modalSelect').hide();
     $('#artisanReg').show();
   });
+
+  // display select option modal
   $('#back1').click(function (){
     $('#modalSelect').show();
     $('#artisanReg').hide();
     $('#artisanLogin').hide();
+    $('#artisanLogin .form-control').val('');
+    $('.error').text('');
   });
+
+  // display select option modal
   $('#back2').click(function (){
     $('#modalSelect').show();
     $('#artisanReg').hide();
     $('#artisanLogin').hide();
+    $('#artisanReg .form-control').val('');
+    $('.error').text('');
   });
+
+  // displays the request form on the landing page on button click in small screens
   $('#requestBtn').click(function (){
     $('.requestForm').css("display","block");
     $('#closeBtn').css("display","block");
     $('#requestBtn').css("display","none");
   });
+
+  // hides the request form on the landing page on button click in small screens
   $('#closeBtn').click(function (){
     $('.requestForm').css("display","none");
     $('#closeBtn').css("display","none");
     $('#requestBtn').css("display","block");
+  });
+
+  // gets a confirmation of account closure before actually deleting the account
+  $('#apply .delBtn').click(function(){
+    $('#apply').hide();
+    $('#delAcct').show();
+  });
+
+  // terminates the closure of account process on button click
+  $('.cancel').click(function(){
+    $('#delAcct').hide();
+    $('.email').val('');
+    $('#apply').show();
   });
 
 });

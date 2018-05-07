@@ -45,7 +45,7 @@ body {
   height: 100%;
   z-index: 999;
   width: 260px;
-  box-shadow: 11px 1px 22px -9px rgba(0, 0, 0, 0.2);
+  box-shadow: 11px 1px 22px -9px rgba(156, 39, 176, 0.48);
 }
 .user-profile-block {
   padding: 20px 0px 30px;
@@ -94,7 +94,23 @@ ul.nav.sideNav>li>a:hover, ul.nav.sideNav>li>a:focus {
   position: relative;
   -webkit-transform: translate3d(260px, 0, 0);
   transform: translate3d(260px, 0, 0);
-  top: 70px;
+  top: 120px;
+}
+/************ Settings page************/
+#delAcct {
+  display: none;
+}
+.delBtn:hover {
+  color: #fff;
+  background-color: red;
+  border-color: transparent;
+}
+.delBtn {
+  background-color: #9c27b0;
+  border-radius: 0px;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-color: transparent;
 }
 /************ footer.html**************/
 footer {
