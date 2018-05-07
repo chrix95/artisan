@@ -184,6 +184,30 @@
 
     }
 
+    // Account closure script
+    if (isset($_POST['delAcct'])) {
+      // get details from form
+      $email = htmlentities(strip_tags(trim($_POST['email'])));
+      $cmail = htmlentities(strip_tags(trim($_POST['cmail'])));
+
+      if ($email == $cmail) {
+        // send details for account closure
+        $delAcct = $conn->prepare("DELETE FROM registration WHERE email=:email");
+        $delAcct->bindParam(":email", $email);
+        $success = $delAcct->execute();
+
+        if ($success) {
+          echo "Account closure confirmed";
+        } else {
+          echo "Failed to close account";
+        }
+
+      } else {
+        echo "Incorrect email provided";
+      }
+
+    }
+
   } catch (Exception $e) {
 
     echo "Problem somewhere". $e->getMessage();

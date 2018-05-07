@@ -230,23 +230,86 @@ $(document).ready(function() {
 
   });
 
-  // Settings functionality
-$('#passUpdate').validate({
+    // Settings functionality
+  $('#passUpdate').validate({
+    rules: {
+      curpass: {
+        required: true
+      },
+      newpass: {
+        required: true
+      },
+      conpass: {
+        required: true,
+        equalTo: '#newpass'
+      }
+    },
+    submitHandler: function() {
+
+      var that = $('#passUpdate'),
+          url = that.attr('action'),
+          type = that.attr('method'),
+          data = {};
+
+      that.find('[name]').each(function(index, value){
+          var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
+
+          data[name] = value;
+      });
+
+      $.ajax({
+        url: '../resources/script.php',
+        type: 'POST',
+        data: data
+      })
+
+      .done(function(data){
+        if (data == 'Password changed successfully') {
+          $('p#message').css({
+            "color":"#9C27B0",
+            "font-size": "15px"
+          });
+          $('p#message').text(data);
+          setTimeout("$('p#message').text('')", 3000);
+        } else if (data == 'Password change failed') {
+
+          $('p#message').css({
+            "color":"#fff",
+            "font-size": "15px"
+          });
+          $('p#message').text(data);
+          setTimeout("$('p#message').text('')", 3000);
+        } else if (data == 'Current password incorrect') {
+
+          $('p#message').css("color", "red");
+          $('p#message').text(data);
+          console.log(data);
+          setTimeout("$('p#message').text('')", 3000);
+        }
+
+      })
+
+      .fail(function(data){
+        console.log("error encountered");
+      });
+
+    }
+
+  });
+
+// validate account closure email
+$('#delAcct').validate({
   rules: {
-    curpass: {
-      required: true
-    },
-    newpass: {
-      required: true
-    },
-    conpass: {
+    email: {
       required: true,
-      equalTo: '#newpass'
+      email: true
     }
   },
   submitHandler: function() {
 
-    var that = $('#passUpdate'),
+    var that = $('#delAcct'),
         url = that.attr('action'),
         type = that.attr('method'),
         data = {};
@@ -266,27 +329,27 @@ $('#passUpdate').validate({
     })
 
     .done(function(data){
-      if (data == 'Password changed successfully') {
-        $('p#message').css({
+      if (data == 'Account closure confirmed') {
+        $('p#delmessage').css({
           "color":"#9C27B0",
           "font-size": "15px"
         });
-        $('p#message').text(data);
-        setTimeout("$('p#message').text('')", 3000);
-      } else if (data == 'Password change failed') {
-
-        $('p#message').css({
-          "color":"#fff",
+        $('p#delmessage').text(data);
+        setTimeout("window.location = 'logout.php'", 3000);
+      } else if (data == 'Failed to close account') {
+        $('p#delmessage').css({
+          "color":"#9C27B0",
           "font-size": "15px"
         });
-        $('p#message').text(data);
-        setTimeout("$('p#message').text('')", 3000);
-      } else if (data == 'Current password incorrect') {
-
-        $('p#message').css("color", "red");
-        $('p#message').text(data);
-        console.log(data);
-        setTimeout("$('p#message').text('')", 3000);
+        $('p#delmessage').text(data);
+        setTimeout("$('p#delmessage').text('')", 3000);
+      } else if (data == 'Incorrect email provided') {
+        $('p#delmessage').css({
+          "color":"#9C27B0",
+          "font-size": "15px"
+        });
+        $('p#delmessage').text(data);
+        setTimeout("$('p#delmessage').text('')", 3000);
       }
 
     })
@@ -296,7 +359,6 @@ $('#passUpdate').validate({
     });
 
   }
-
 });
 
 });
