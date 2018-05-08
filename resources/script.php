@@ -142,7 +142,7 @@
 
     // password upadte script for logged users
     if (isset($_POST['passupdate'])) {
-
+      // get details from form
       $email	= htmlentities(strip_tags(trim($_POST['email'])));
       $curpassword = htmlentities(strip_tags(trim($_POST['curpass'])));
       $newpassword = htmlentities(strip_tags(trim($_POST['newpass'])));
@@ -156,7 +156,7 @@
       $retrieved_password = $get_details->password;
 
       $check_password = password_verify($curpassword, $retrieved_password);
-
+      // once current password has been confirmed
       if ($check_password) {
 
         // hash new password and update record
@@ -166,6 +166,7 @@
         $update_password->bindParam(":email", $email);
         $success = $update_password->execute();
 
+        // on success of password hashing and upadting
         if ($success) {
 
           echo "Password changed successfully";
@@ -190,19 +191,21 @@
       $email = htmlentities(strip_tags(trim($_POST['email'])));
       $cmail = htmlentities(strip_tags(trim($_POST['cmail'])));
 
-      if ($email == $cmail) {
+      // confirms if email provided matches the accounts email
+      if ($email == $cmail) { // if the email matches
         // send details for account closure
         $delAcct = $conn->prepare("DELETE FROM registration WHERE email=:email");
         $delAcct->bindParam(":email", $email);
         $success = $delAcct->execute();
 
+        // once the deletion process has been carried out
         if ($success) {
           echo "Account closure confirmed";
         } else {
           echo "Failed to close account";
         }
 
-      } else {
+      } else { // if email doesn't matches
         echo "Incorrect email provided";
       }
 

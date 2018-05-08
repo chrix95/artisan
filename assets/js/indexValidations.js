@@ -230,8 +230,9 @@ $(document).ready(function() {
 
   });
 
-    // Settings functionality
+  // Settings functionality
   $('#passUpdate').validate({
+    // validates the form with this rules
     rules: {
       curpass: {
         required: true
@@ -245,7 +246,7 @@ $(document).ready(function() {
       }
     },
     submitHandler: function() {
-
+      //gets the form fields details
       var that = $('#passUpdate'),
           url = that.attr('action'),
           type = that.attr('method'),
@@ -256,15 +257,15 @@ $(document).ready(function() {
             name = that.attr('name'),
             value = that.val();
 
-          data[name] = value;
+          data[name] = value;  // stores the data as an array
       });
-
+      // sends the data to the script using ajax
       $.ajax({
-        url: '../resources/script.php',
+        url: '../resources/script.php', // script responsible for processing the information
         type: 'POST',
         data: data
       })
-
+      // on completion, the necessary actions are taken
       .done(function(data){
         if (data == 'Password changed successfully') {
           $('p#message').css({
@@ -290,7 +291,7 @@ $(document).ready(function() {
         }
 
       })
-
+      // on failure the error uis displayed in the console
       .fail(function(data){
         console.log("error encountered");
       });
@@ -300,65 +301,66 @@ $(document).ready(function() {
   });
 
 // validate account closure email
-$('#delAcct').validate({
-  rules: {
-    email: {
-      required: true,
-      email: true
-    }
-  },
-  submitHandler: function() {
-
-    var that = $('#delAcct'),
-        url = that.attr('action'),
-        type = that.attr('method'),
-        data = {};
-
-    that.find('[name]').each(function(index, value){
-        var that = $(this),
-          name = that.attr('name'),
-          value = that.val();
-
-        data[name] = value;
-    });
-
-    $.ajax({
-      url: '../resources/script.php',
-      type: 'POST',
-      data: data
-    })
-
-    .done(function(data){
-      if (data == 'Account closure confirmed') {
-        $('p#delmessage').css({
-          "color":"#9C27B0",
-          "font-size": "15px"
-        });
-        $('p#delmessage').text(data);
-        setTimeout("window.location = 'logout.php'", 3000);
-      } else if (data == 'Failed to close account') {
-        $('p#delmessage').css({
-          "color":"#9C27B0",
-          "font-size": "15px"
-        });
-        $('p#delmessage').text(data);
-        setTimeout("$('p#delmessage').text('')", 3000);
-      } else if (data == 'Incorrect email provided') {
-        $('p#delmessage').css({
-          "color":"#9C27B0",
-          "font-size": "15px"
-        });
-        $('p#delmessage').text(data);
-        setTimeout("$('p#delmessage').text('')", 3000);
+  $('#delAcct').validate({
+    // validates the form with this rules
+    rules: {
+      email: {
+        required: true,
+        email: true
       }
+    },
+    submitHandler: function() {
+	     //gets the form fields details
+      var that = $('#delAcct'),
+          url = that.attr('action'),
+          type = that.attr('method'),
+          data = {};
 
-    })
+      that.find('[name]').each(function(index, value){
+          var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
 
-    .fail(function(data){
-      console.log("error encountered");
-    });
+          data[name] = value; // stores the data as an array
+      });
+	     // sends the data to the script using ajax
+      $.ajax({
+        url: '../resources/script.php',
+        type: 'POST',
+        data: data
+      })
+	     // on completion, the necessary actions are taken
+      .done(function(data){
+        if (data == 'Account closure confirmed') {
+          $('p#delmessage').css({
+            "color":"#9C27B0",
+            "font-size": "15px"
+          });
+          $('p#delmessage').text(data);
+          setTimeout("window.location = 'logout.php'", 3000);
+        } else if (data == 'Failed to close account') {
+          $('p#delmessage').css({
+            "color":"#9C27B0",
+            "font-size": "15px"
+          });
+          $('p#delmessage').text(data);
+          setTimeout("$('p#delmessage').text('')", 3000);
+        } else if (data == 'Incorrect email provided') {
+          $('p#delmessage').css({
+            "color":"#9C27B0",
+            "font-size": "15px"
+          });
+          $('p#delmessage').text(data);
+          setTimeout("$('p#delmessage').text('')", 3000);
+        }
 
-  }
-});
+      })
+	     // on failure the error uis displayed in the console
+      .fail(function(data){
+        console.log("error encountered");
+      });
+
+    }
+  });
 
 });
