@@ -18,7 +18,7 @@
       $address = htmlentities(strip_tags(trim($_POST['address'])));
 
       // Confirm if email already exist
-      $check_email = $conn->prepare("SELECT * from registration WHERE email=:email");
+      $check_email = $conn->prepare("SELECT * from users WHERE email=:email");
       $check_email->bindParam(":email", $email);
       $check_email->execute();
       $email_count = $check_email->rowCount();
@@ -26,7 +26,7 @@
       if ($email_count == 0 ) {
 
         // Confirm if phone number already exist
-        $check_phone = $conn->prepare("SELECT * from registration WHERE phone=:phone");
+        $check_phone = $conn->prepare("SELECT * from users WHERE phone=:phone");
         $check_phone->bindParam(":phone", $phone);
         $check_phone->execute();
         $phone_count = $check_phone->rowCount();
@@ -37,11 +37,14 @@
           $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
           // insert record into database
-          $store = $conn->prepare("INSERT INTO registration (surname, othername, email, phone, password, state, city, address) VALUES (:surname, :othername, :email, :phone, :password, :state, :city, :address)");
+          $store = $conn->prepare("INSERT INTO users (surname, othername, email, phone, username, category, image, password, state, city, address) VALUES (:surname, :othername, :email, :phone, :username, :category, :image, :password, :state, :city, :address)");
           $store->bindParam(":surname", $surname);
           $store->bindParam(":othername", $othername);
           $store->bindParam(":email", $email);
           $store->bindParam(":phone", $phone);
+          $store->bindParam(":username", '');
+          $store->bindParam(":category", '');
+          $store->bindParam(":image", '');
           $store->bindParam(":password", $hash_password);
           $store->bindParam(":state", $state);
           $store->bindParam(":city", $city);
@@ -79,7 +82,7 @@
       $password = htmlentities(strip_tags(trim($_POST['password'])));
 
       // confirm if the email exist
-      $query_email = $conn->prepare("SELECT * FROM registration WHERE email =:email");
+      $query_email = $conn->prepare("SELECT * FROM users WHERE email =:email");
       $query_email->bindParam(":email", $email);
       $query_email->execute();
       $check_email_exist = $query_email->rowCount();
@@ -148,7 +151,7 @@
       $newpassword = htmlentities(strip_tags(trim($_POST['newpass'])));
 
       // confirm if the email exist
-      $query_email = $conn->prepare("SELECT * FROM registration WHERE email=:email");
+      $query_email = $conn->prepare("SELECT * FROM users WHERE email=:email");
       $query_email->bindParam(":email", $email);
       $query_email->execute();
       // fetch password
@@ -161,7 +164,7 @@
 
         // hash new password and update record
         $hashPassord = password_hash($newpassword, PASSWORD_DEFAULT);
-        $update_password = $conn->prepare("UPDATE registration SET password=:password WHERE email=:email");
+        $update_password = $conn->prepare("UPDATE users SET password=:password WHERE email=:email");
         $update_password->bindParam(":password", $hashPassord);
         $update_password->bindParam(":email", $email);
         $success = $update_password->execute();
@@ -194,7 +197,7 @@
       // confirms if email provided matches the accounts email
       if ($email == $cmail) { // if the email matches
         // send details for account closure
-        $delAcct = $conn->prepare("DELETE FROM registration WHERE email=:email");
+        $delAcct = $conn->prepare("DELETE FROM users WHERE email=:email");
         $delAcct->bindParam(":email", $email);
         $success = $delAcct->execute();
 
@@ -207,6 +210,47 @@
 
       } else { // if email doesn't matches
         echo "Incorrect email provided";
+      }
+
+    }
+
+    // update profile details
+    // password upadte script for logged users
+    if (isset($_POST['updateprof'])) {
+      // get details from form
+      $username	= htmlentities(strip_tags(trim($_POST['username'])));
+      $category = htmlentities(strip_tags(trim($_POST['category'])));
+      $email = htmlentities(strip_tags(trim($_POST['email'])));
+
+      // confirm if the username has been used
+      $query_username = $conn->prepare("SELECT * FROM users WHERE username=:username");
+      $query_username->bindParam(":username", $username);
+      $query_username->execute();
+      $verify_username = $query_username->rowCount();
+
+      if ($verify_username == 0) {
+
+        // update new profile records
+        $update_profile= $conn->prepare("UPDATE users SET username=:username, category=:category WHERE email=:email");
+        $update_profile->bindParam(":username", $username);
+        $update_profile->bindParam(":category", $category);
+        $update_profile->bindParam(":email", $email);
+        $success = $update_profile->execute();
+        // on success of password hashing and upadting
+        if ($success) {
+
+          echo "Profile updated successfully";
+
+        } else {
+
+          echo "Profile update failed";
+
+        }
+
+      } else {
+
+        echo "Username already exist";
+
       }
 
     }

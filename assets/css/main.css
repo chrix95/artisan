@@ -255,6 +255,9 @@ label.error {
 #artisanReg, #artisanLogin {
   display: none;
 }
+#profileconfirmed {
+  display: none;
+}
 /************ footer.html**************/
 footer {
   background-color: #9c27b0;

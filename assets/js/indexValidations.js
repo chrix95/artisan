@@ -300,7 +300,7 @@ $(document).ready(function() {
 
   });
 
-// validate account closure email
+  // validate account closure email
   $('#delAcct').validate({
     // validates the form with this rules
     rules: {
@@ -363,4 +363,71 @@ $(document).ready(function() {
     }
   });
 
+  //updaet profile details
+  $('#profileForm').validate({
+    // validates the form with this rules
+    rules: {
+      username: {
+        required: true
+      },
+      category: {
+        required: true
+      }
+    },
+    submitHandler: function() {
+      //gets the form fields details
+      var that = $('#profileForm'),
+          url = that.attr('action'),
+          type = that.attr('method'),
+          data = {};
+
+      that.find('[name]').each(function(index, value){
+          var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
+
+          data[name] = value;  // stores the data as an array
+      });
+      // sends the data to the script using ajax
+      $.ajax({
+        url: '../resources/script.php', // script responsible for processing the information
+        type: 'POST',
+        data: data
+      })
+      // on completion, the necessary actions are taken
+      .done(function(data){
+        if (data == 'Profile updated successfully') {
+          $('p#profmessage').css({
+            "color":"#9C27B0",
+            "font-size": "15px"
+          });
+          $('p#profmessage').text(data);
+          setTimeout("$('p#profmessage').text('')", 2000);
+          $('#profileconfirmed').css("display","block");
+          $('#profileForm').css("display","none");
+        } else if (data == 'Profile update failed') {
+
+          $('p#profmessage').css({
+            "color":"#fff",
+            "font-size": "15px"
+          });
+          $('p#profmessage').text(data);
+          setTimeout("$('p#profmessage').text('')", 3000);
+        } else if (data == 'Username already exist') {
+
+          $('p#profmessage').css("color", "red");
+          $('p#profmessage').text(data);
+          console.log(data);
+          setTimeout("$('p#profmessage').text('')", 3000);
+        }
+
+      })
+      // on failure the error uis displayed in the console
+      .fail(function(data){
+        console.log("error encountered");
+      });
+
+    }
+
+  });
 });

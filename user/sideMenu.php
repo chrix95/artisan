@@ -3,7 +3,12 @@
     <div class="user-profile-block">
       <div>
         <div class="user-thumb">
-          <img src="../assets/img/demo-user.png" alt="img" class="img-responsive img-thumbnail center-block" width="150px">
+
+          <?php if ($_SESSION['details']->image == '') { ?>
+            <img id="image" src="../assets/img/demo-user.png" alt="img" class="img-responsive img-thumbnail center-block" width="150px">
+          <?php } else { ?>
+            <img id="image" src="<?php echo $_SESSION['details']->image; ?>" alt="img" class="img-responsive img-thumbnail center-block" width="150px">
+          <?php } ?>
         </div>
         <div class="user-info">
           <h5>
