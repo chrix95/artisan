@@ -255,6 +255,62 @@
 
     }
 
+    // forgot password script
+    if (isset($_POST['submitReset'])) {
+
+		  $email = htmlentities(strip_tags(trim($_POST['email'])));
+      $phone = htmlentities(strip_tags(trim($_POST['phone'])));
+
+			$query_email = $conn->prepare("SELECT * FROM users WHERE email =:email");
+			$query_email->bindParam(":email", $email);
+			$query_email->execute();
+			$check_email_exist = $query_email->rowCount();
+
+	    if ($check_email_exist == 1) {
+
+        $query_phone = $conn->prepare("SELECT * FROM users WHERE phone =:phone");
+  			$query_phone->bindParam(":phone", $phone);
+  			$query_phone->execute();
+  			$check_phone_exist = $query_phone->rowCount();
+
+        if ($check_phone_exist == 1) {
+
+          $random_password = rand(10000000000,99999999999);
+
+          $password = password_hash($random_password, PASSWORD_DEFAULT);
+
+          $update_password = $conn->prepare("UPDATE users SET password=:password WHERE email =:email");
+          $update_password->bindParam(":password", $password);
+          $update_password->bindParam(":email", $email);
+          $update_password->execute();
+
+          // send mail to email address
+          $to = $email;
+           $subject = 'Artisan Forget Password';
+           $body = "Hi " .$email. ",\n\n
+                   We all forget our password most time, it's no big deal.\n\n
+                   Your new login details are: \n\n
+                   Email: " . $email ."\n\n
+                   Password: " . $random_password . "\n\n
+                   Please log in with the details provided. And do not reply this mail." ;
+
+           mail($to, $subject, $body , 'noreply@artisan.com');
+
+          echo "Recovery Password has been sent to email";
+
+        } else {
+
+          echo "Phone number matches no record";
+
+        }
+
+			} else {
+
+				echo "Email matches no record";
+			}
+
+		}
+
   } catch (Exception $e) {
 
     echo "Problem somewhere". $e->getMessage();

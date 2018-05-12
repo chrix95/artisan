@@ -430,4 +430,70 @@ $(document).ready(function() {
     }
 
   });
+
+  // forgot password
+  $('#fpassForm').validate({
+    rules: {
+      email: {
+        required: true,
+        email: true
+      },
+      phone: {
+        required: true
+      }
+    },
+
+    submitHandler: function() {
+
+      var that = $('#fpassForm'),
+          url = that.attr('action'),
+          type = that.attr('method'),
+          data = {};
+
+      that.find('[name]').each(function(index, value){
+          var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
+
+          data[name] = value;
+      });
+
+      $.ajax({
+        url: 'resources/script.php',
+        type: 'POST',
+        data: data
+      })
+
+      .done(function(data){
+        if (data == 'Recovery Password has been sent to email') {
+          $('p#message').css({
+            "color":"#9C27B0",
+            "font-size": "18px"
+          });
+          $('p#message').text(data);
+          setTimeout("$('p#message').text('')", 3000);
+        } else if (data == 'Phone number matches no record') {
+
+          $('p#message').css("color", "red");
+          $('p#message').text(data);
+          console.log(data);
+          setTimeout("$('p#message').text('')", 2000);
+        } else if (data == 'Email matches no record') {
+
+          $('p#message').css("color", "red");
+          $('p#message').text(data);
+          console.log(data);
+          setTimeout("$('p#message').text('')", 2000);
+        }
+
+      })
+
+      .fail(function(data){
+        console.log("error encountered");
+      });
+
+    }
+
+  });
+
 });

@@ -113,8 +113,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label class="control-label">Email or Phone</label>
-                <input type="text" class="form-control" placeholder="Email or Phone" name="email" autofocus="yes">
+                <label class="control-label">Email</label>
+                <input type="text" class="form-control" placeholder="Email" name="email" autofocus="yes">
               </div>
             </div>
           </div>
@@ -128,12 +128,48 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <p id="message" style="color: red"></p>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" name="button" id="check" class="btn btn-primary findOut">Forgot password</button>
+                </div>
+                <div class="col-md-12">
+                  <p id="message" style="color: red"></p>
+                </div>
+              </div>
             </div>
             <div class="col-md-6">
               <div class="pull-right">
                 <button type="submit" name="submitLogin" class="btn findOut">Login</button>
                 <button type="button" class="btn findOut" id="back1">Back</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form id="fpassForm" class="regForm" action="resources/script.php" method="POST" autocomplete="off">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="text" class="form-control" placeholder="Email" name="email" autofocus="yes">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Phone</label>
+                <input type="text" class="form-control" placeholder="Phone" name="phone" autofocus="yes">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p id="message" style="color: red"></p>
+            </div>
+            <div class="col-md-6">
+              <div class="pull-right">
+                <button type="submit" name="submitReset" class="btn findOut">Reset</button>
+                <button type="button" class="btn findOut" id="back3">Back</button>
               </div>
             </div>
           </div>

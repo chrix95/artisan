@@ -100,4 +100,19 @@ $(document).ready(function() {
     $('#apply').show();
   });
 
+  // hides login form and displays forgot password form
+  $('#check').click(function (){
+    $('#artisanLogin').css("display","none");
+    $('#fpassForm').css("display","block");
+  });
+
+  // shows the login form and hides the forgot password form
+  $('#back3').click(function (){
+    $('#fpassForm').css("display","none");
+    $('#artisanLogin').css("display","block");
+    $('#fpassForm .form-control').val('');
+    $('#message').text('');
+    $('.error').text('');
+  });
+
 });
