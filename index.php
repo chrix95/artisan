@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php require 'header.php'; ?>
 
 <div id="main-header-section" class="main-header-section">
   <div class="container">
@@ -6,24 +6,61 @@
       <div class="col-sm-12 col-md-5">
         <div class="header-content-block">
           <div class="header-title-block">
-              <h2>Search for Artisans</h2>
-              <p>Looking for an artisian for that job, search no further. Artisian are ready to meet up with you as soon as possible, anywhere, 24/7.</p>
-              <a href="#work">
-                <button type="button" name="button" class="btn btn-how btn-lg">How it works</button>
-              </a>
-              <button type="button" name="request" id="requestBtn" class="btn btn-how btn-lg hidden-md hidden-lg">Request</button>
-              <button type="button" name="request" id="closeBtn" class="btn btn-how btn-lg hidden-md hidden-lg">Hide</button>
+            <h2>Search for Artisans</h2>
+            <p>Looking for an artisian for that job, search no further. Artisian are ready to meet up with you as soon as possible, anywhere, 24/7.</p>
+            <a href="#work">
+              <button type="button" name="button" class="btn btn-how btn-lg">How it works</button>
+            </a>
           </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-7 requestForm">
-        <?php include 'resources/findForm.html'; ?>
       </div>
     </div>
   </div>
   <div class="overlay"></div>
 </div>
 
+<!-- added form for search -->
+<section id="search">
+  <div class="container">
+    <div class="row">
+      <form id="findForm" action="feedback.php" method="POST" enctype="multipart/form-data">
+        <div class="col-xs-6 col-md-3">
+          <div class="form-group">
+            <label>Category</label>
+            <select name="category" id="category" class="form-control">
+              <?php require 'resources/category.html'; ?>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="form-group">
+            <label>State</label>
+            <select name="state" class="form-control state">
+              <option selected disabled>Please select</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="form-group">
+            <label>City</label>
+            <select name="city" class="form-control city">
+              <option selected disabled>Please select</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <label></label>
+          <div class="form-group">
+            <button type="submit" name="find" class="btn btn-primary btn-search btn-md">Find</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- end form for search -->
+
+<!-- how it works area -->
 <section id="work">
   <div class="container">
     <div class="row">
@@ -52,7 +89,9 @@
     </div>
   </div>
 </section>
+<!-- how it works area -->
 
+<!-- Hiring maethods -->
 <section id="hiring">
   <div class="container">
     <div class="row">
@@ -114,5 +153,7 @@
     </div>
   </div>
 </section>
+<!-- Hiring methods -->
 
+<!-- attach footer -->
 <?php include 'resources/footer.php'; ?>

@@ -28,18 +28,18 @@ $(document).ready(function() {
   .done(function(error) {
     mydata = error;
     for (var state in mydata.States) {
-        $('#state').append('<option value="' + String(state) + '">' + String(state) + ' </option>');
+        $('.state').append('<option value="' + String(state) + '">' + String(state) + ' </option>');
     }
   })
-  $('#state').change(function(event) {
+  $('.state').change(function(event) {
       var selectedState = $(this).val();
-      $('#city').empty();
+      $('.city').empty();
       //Get cities for selectedState
       var cities = mydata.States[String(selectedState)];
-      $('#city').append('<option value="" selected disabled>Please select</option>');
+      $('.city').append('<option value="" selected disabled>Please select</option>');
 
       for (var i = 0; i < cities.length; i++) {
-          $('#city').append('<option value="' + String(cities[i]) + '">' + String(cities[i]) + ' </option>');
+          $('.city').append('<option value="' + String(cities[i]) + '">' + String(cities[i]) + ' </option>');
       }
   });
 
@@ -71,20 +71,6 @@ $(document).ready(function() {
     $('#artisanLogin').hide();
     $('#artisanReg .form-control').val('');
     $('.error').text('');
-  });
-
-  // displays the request form on the landing page on button click in small screens
-  $('#requestBtn').click(function (){
-    $('.requestForm').css("display","block");
-    $('#closeBtn').css("display","block");
-    $('#requestBtn').css("display","none");
-  });
-
-  // hides the request form on the landing page on button click in small screens
-  $('#closeBtn').click(function (){
-    $('.requestForm').css("display","none");
-    $('#closeBtn').css("display","none");
-    $('#requestBtn').css("display","block");
   });
 
   // gets a confirmation of account closure before actually deleting the account

@@ -75,7 +75,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>State of residence</label>
-                <select class="form-control" name="state" id="state">
+                <select class="form-control state" name="state">
                     <option selected disabled>Please select</option>
                 </select>
               </div>
@@ -83,7 +83,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>City</label>
-                <select class="form-control" name="city" id="city">
+                <select class="form-control city" name="city">
                   <option selected disabled>Please select</option>
                 </select>
               </div>

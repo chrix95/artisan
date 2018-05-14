@@ -3,7 +3,7 @@
   try {
 
     // attach working connection to database
-    include 'connection.php';
+    require 'connection.php';
 
     if (isset($_POST['submitReg'])) {
 
@@ -16,6 +16,9 @@
       $state = htmlentities(strip_tags(trim($_POST['state'])));
       $city = htmlentities(strip_tags(trim($_POST['city'])));
       $address = htmlentities(strip_tags(trim($_POST['address'])));
+      $username = '';
+      $category = '';
+      $image = '';
 
       // Confirm if email already exist
       $check_email = $conn->prepare("SELECT * from users WHERE email=:email");
@@ -37,14 +40,14 @@
           $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
           // insert record into database
-          $store = $conn->prepare("INSERT INTO users (surname, othername, email, phone, username, category, image, password, state, city, address) VALUES (:surname, :othername, :email, :phone, :username, :category, :image, :password, :state, :city, :address)");
+          $store = $conn->prepare("INSERT INTO users (surname, othername, email, phone, username, category, image, password, state, city, address, live) VALUES (:surname, :othername, :email, :phone, :username, :category, :image, :password, :state, :city, :address, :live)");
           $store->bindParam(":surname", $surname);
           $store->bindParam(":othername", $othername);
           $store->bindParam(":email", $email);
           $store->bindParam(":phone", $phone);
-          $store->bindParam(":username", '');
-          $store->bindParam(":category", '');
-          $store->bindParam(":image", '');
+          $store->bindParam(":username", $username);
+          $store->bindParam(":category", $category);
+          $store->bindParam(":image", $image);
           $store->bindParam(":password", $hash_password);
           $store->bindParam(":state", $state);
           $store->bindParam(":city", $city);
@@ -214,8 +217,7 @@
 
     }
 
-    // update profile details
-    // password upadte script for logged users
+    // profile update script for logged in users
     if (isset($_POST['updateprof'])) {
       // get details from form
       $username	= htmlentities(strip_tags(trim($_POST['username'])));
@@ -231,9 +233,10 @@
       if ($verify_username == 0) {
 
         // update new profile records
-        $update_profile= $conn->prepare("UPDATE users SET username=:username, category=:category WHERE email=:email");
+        $update_profile= $conn->prepare("UPDATE users SET username=:username, category=:category, live=:live WHERE email=:email");
         $update_profile->bindParam(":username", $username);
         $update_profile->bindParam(":category", $category);
+        $update_profile->bindValue(":live", 1); // sets the a value for artisan visibility on search
         $update_profile->bindParam(":email", $email);
         $success = $update_profile->execute();
         // on success of password hashing and upadting
@@ -310,6 +313,37 @@
 			}
 
 		}
+
+    // check of the search button is clicked
+    if (isset($_POST['find'])) {
+      // get form details
+      $category = htmlentities(strip_tags(trim($_POST['category'])));
+      $state = htmlentities(strip_tags(trim($_POST['state'])));
+      $city = htmlentities(strip_tags(trim($_POST['city'])));
+
+      // prepare sql query for processing
+      $query_db = $conn->prepare("SELECT * FROM users WHERE category=:category AND state=:state AND city=:city AND live=:live");
+      $query_db->bindParam(":category", $category);
+      $query_db->bindParam(":state", $state);
+      $query_db->bindParam(":city", $city);
+      $query_db->bindValue(":live", 1);
+      $query_db->execute();
+      // get the number of rows availbele for selected category and location
+      $count = $query_db->rowCount();
+
+      if ($count > 0) {
+
+        $get_artisans = $query_db->fetch(PDO::FETCH_OBJ);
+        json_encode($get_artisans);
+
+      } else {
+
+        // no result returned
+        echo "No result found";
+
+      }
+
+    }
 
   } catch (Exception $e) {
 
