@@ -281,7 +281,6 @@ label.error {
   position: relative;
   background-image: url('../img/background/advert.jpeg');
   background-size: cover;
-  height: 100%;
 }
 .feedback-header .overlay {
   position: absolute;

@@ -40,7 +40,7 @@
           $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
           // insert record into database
-          $store = $conn->prepare("INSERT INTO users (surname, othername, email, phone, username, category, image, password, state, city, address, live) VALUES (:surname, :othername, :email, :phone, :username, :category, :image, :password, :state, :city, :address, :live)");
+          $store = $conn->prepare("INSERT INTO users (surname, othername, email, phone, username, category, image, password, state, city, address) VALUES (:surname, :othername, :email, :phone, :username, :category, :image, :password, :state, :city, :address)");
           $store->bindParam(":surname", $surname);
           $store->bindParam(":othername", $othername);
           $store->bindParam(":email", $email);
@@ -233,6 +233,7 @@
       if ($verify_username == 0) {
 
         // update new profile records
+        $_SESSION['details']->username = $username;
         $update_profile= $conn->prepare("UPDATE users SET username=:username, category=:category, live=:live WHERE email=:email");
         $update_profile->bindParam(":username", $username);
         $update_profile->bindParam(":category", $category);

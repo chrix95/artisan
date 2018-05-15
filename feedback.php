@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'resources/connection.php';
 
 if (isset($_POST['find'])) {
@@ -19,8 +20,10 @@ if (isset($_POST['find'])) {
 
   if ($count > 0) {
 
+    // retrieve all required information from database
     $get_artisans = $query_db->fetchALL(PDO::FETCH_OBJ);
-    // var_dump($get_artisans);
+    $_SESSION['found'] = $get_artisans;
+    header("location: feedback.php?found=true");
 
   } else {
 
@@ -30,6 +33,8 @@ if (isset($_POST['find'])) {
   }
 
 }
+// redirects user to homepage if search wasn;t used
+
  ?>
 <?php require 'header.php'; ?>
 
@@ -100,55 +105,65 @@ if (isset($_POST['find'])) {
 
       <div class="col-md-8">
 
-        <?php
-          $size = count($get_artisans);
-          for($x = 0; $x < $size ; $x++) {
-            $surname = $get_artisans[$x]->surname;
-            $othername = $get_artisans[$x]->othername;;
-            $email = $get_artisans[$x]->email;
-            $phone = $get_artisans[$x]->phone;
-            $username = $get_artisans[$x]->username;
-            $category = $get_artisans[$x]->category;
-            $image = $get_artisans[$x]->image;
-            $state = $get_artisans[$x]->state;
-            $city = $get_artisans[$x]->city;
-            $address = $get_artisans[$x]->address;
-         ?>
+        <!-- display results from database -->
+        <?php if (isset($_GET['found'])) { ?>
+          <?php
+            $get_artisans = $_SESSION['found'];
+            $size = count($_SESSION['found']);
+            for($x = 0; $x < $size ; $x++) {
+              $surname = $get_artisans[$x]->surname;
+              $othername = $get_artisans[$x]->othername;;
+              $email = $get_artisans[$x]->email;
+              $phone = $get_artisans[$x]->phone;
+              $username = $get_artisans[$x]->username;
+              $category = $get_artisans[$x]->category;
+              $image = $get_artisans[$x]->image;
+              $state = $get_artisans[$x]->state;
+              $city = $get_artisans[$x]->city;
+              $address = $get_artisans[$x]->address;
+           ?>
 
-         <div class="row clients">
+           <div class="row clients">
 
-           <div class="col-md-8">
-             <div class="header">
-               <h2><?php echo $surname. ', ' .$othername; ?></h2>
+             <div class="col-md-8">
+               <div class="header">
+                 <h2><?php echo $surname. ', ' .$othername; ?></h2>
+               </div>
+               <div class="sub-header">
+                 <p>
+                   <i class="fa fa-map-marker" aria-hidden="true"></i>
+                   <span><?php echo $address; ?></span>
+                 </p>
+                 <p>
+                   <i class="fa fa-map-marker" aria-hidden="true"></i>
+                   <span><?php echo $city. ', ' .$state; ?></span>
+                 </p>
+                 <p>
+                   <i class="fa fa-phone" aria-hidden="true"></i>
+                   <span>
+                     <?php echo $phone; ?>
+                   </span>
+                 </p>
+               </div>
              </div>
-             <div class="sub-header">
-               <p>
-                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                 <span><?php echo $address; ?></span>
-               </p>
-               <p>
-                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                 <span><?php echo $city. ', ' .$state; ?></span>
-               </p>
-               <p>
-                 <i class="fa fa-phone" aria-hidden="true"></i>
-                 <span>
-                   <?php echo $phone; ?>
-                 </span>
-               </p>
+
+             <div class="col-md-4">
+               <img src="<?php echo 'user/'.$image; ?>" alt="" class="img img-responsive center-block img-thumbnail">
              </div>
+
            </div>
 
-           <div class="col-md-4">
-             <img src="<?php echo 'user/'.$image; ?>" alt="" class="img img-responsive center-block img-thumbnail">
-           </div>
-
-         </div>
-
-        <?php
-          }
-        ?>
-
+          <?php
+            }
+          ?>
+        <?php } else {; ?>
+          <!-- when no result is returned form database -->
+          <div class="clients">
+            <div class="header">
+              <h2>No result match</h2>
+            </div>
+          </div>
+        <?php } ?>
       </div>
 
       <div class="col-md-4">

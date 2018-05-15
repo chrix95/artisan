@@ -130,7 +130,7 @@
                 <div class="form-group">
                   <select class="form-control" name="category" id="category1">
                     <option selected disabled>Select</option>
-                    <?php include 'category.html'; ?>
+                    <?php include '../resources/category.html'; ?>
                   </select>
                 </div>
                 <div class="form-group">

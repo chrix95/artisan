@@ -14,7 +14,13 @@
           <h5>
             <?php echo $_SESSION['details']->surname. ", " .$_SESSION['details']->othername; ?>
           </h5>
-          <span>UI Designer</span>
+          <span><?php
+            if ($_SESSION['details']->category == '') {
+
+            } else {
+              echo $_SESSION['details']->category;
+            }
+          ?></span>
         </div>
       </div>
     </div>
