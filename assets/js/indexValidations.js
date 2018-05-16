@@ -496,4 +496,66 @@ $(document).ready(function() {
 
   });
 
+  // request for artisans script
+  $('#requestForm').validate({
+    // validates the form with this rules
+    rules: {
+      name: {
+        required: true
+      },
+      phone: {
+        required: true
+      },
+      address: {
+        required: true
+      }
+    },
+
+    submitHandler: function() {
+      //gets the form fields details
+      var that = $('#requestForm'),
+          url = that.attr('action'),
+          type = that.attr('method'),
+          data = {};
+
+      that.find('[name]').each(function(index, value){
+          var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
+
+          data[name] = value; // stores the data as an array
+      });
+      // sends the data to the script using ajax
+      $.ajax({
+        url: 'resources/script.php', // script responsible for processing the information
+        type: 'POST',
+        data: data
+      })
+      // on completion, the necessary actions are taken
+      .done(function(data){
+        if (data == 'Your request has been sent.') {
+          $('p#message').css({
+            "color":"#9C27B0",
+            "font-size": "18px"
+          });
+          $('p#message').text(data);
+          setTimeout("window.location='index.php'", 2000);
+        } else if (data == 'Server error. Please try again later') {
+
+          $('p#message').css("color", "red");
+          $('p#message').text(data);
+          console.log(data);
+          setTimeout("$('p#message').text('')", 2000);
+        }
+
+      })
+      // on failure the error uis displayed in the console
+      .fail(function(data){
+        console.log("error encountered");
+      });
+
+    }
+
+  });
+
 });

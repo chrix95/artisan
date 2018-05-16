@@ -233,7 +233,6 @@
       if ($verify_username == 0) {
 
         // update new profile records
-        $_SESSION['details']->username = $username;
         $update_profile= $conn->prepare("UPDATE users SET username=:username, category=:category, live=:live WHERE email=:email");
         $update_profile->bindParam(":username", $username);
         $update_profile->bindParam(":category", $category);
@@ -345,6 +344,37 @@
       }
 
     }
+
+    // requesting for artisan
+    if (isset($_POST['submitRequest'])) {
+
+      // collect data posted
+      $name = htmlentities(strip_tags(trim($_POST['name'])));
+      $username = htmlentities(strip_tags(trim($_POST['username'])));
+      $phone = htmlentities(strip_tags(trim($_POST['phone'])));
+      $address = htmlentities(strip_tags(trim($_POST['address'])));
+
+      // adds request into database
+      $addRequest = $conn->prepare("INSERT INTO request (username, name, phone, address) VALUES (:username, :name, :phone, :address)");
+      $addRequest->bindParam(":username", $username);
+      $addRequest->bindParam(":name", $name);
+      $addRequest->bindParam(":phone", $phone);
+      $addRequest->bindParam(":address", $address);
+      $success = $addRequest->execute();
+
+      // if request was added successfully
+      if ($success) {
+
+        echo "Your request has been sent.";
+
+      } else {
+
+        echo "Server error. Please try again later";
+
+      }
+
+    }
+
 
   } catch (Exception $e) {
 

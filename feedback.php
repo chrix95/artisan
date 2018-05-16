@@ -2,6 +2,7 @@
 session_start();
 require 'resources/connection.php';
 
+// triggers the script once the find button is clicked
 if (isset($_POST['find'])) {
   // get form details
   $category = htmlentities(strip_tags(trim($_POST['category'])));
@@ -20,15 +21,10 @@ if (isset($_POST['find'])) {
 
   if ($count > 0) {
 
-    // retrieve all required information from database
+    // retrieve all required information from database when there is at least a match
     $get_artisans = $query_db->fetchALL(PDO::FETCH_OBJ);
-    $_SESSION['found'] = $get_artisans;
-    header("location: feedback.php?found=true");
-
-  } else {
-
-    // no result returned
-    echo "No result found";
+    $_SESSION['found'] = $get_artisans; // stores the information into a session
+    header("location: feedback.php?found=true"); // redirects user to the found results
 
   }
 
@@ -36,6 +32,7 @@ if (isset($_POST['find'])) {
 // redirects user to homepage if search wasn;t used
 
  ?>
+ <!-- include header -->
 <?php require 'header.php'; ?>
 
 <!-- feedback image background -->
@@ -97,6 +94,7 @@ if (isset($_POST['find'])) {
 </section>
 <!-- end search fields -->
 
+<!-- results of search is displayed -->
 <section id="result">
 
   <div class="container">
@@ -108,9 +106,10 @@ if (isset($_POST['find'])) {
         <!-- display results from database -->
         <?php if (isset($_GET['found'])) { ?>
           <?php
-            $get_artisans = $_SESSION['found'];
-            $size = count($_SESSION['found']);
+            $get_artisans = $_SESSION['found']; // stores the session in a varaible
+            $size = count($_SESSION['found']); // gets the size of the result array for proper iteration
             for($x = 0; $x < $size ; $x++) {
+              // store each result into variables
               $surname = $get_artisans[$x]->surname;
               $othername = $get_artisans[$x]->othername;;
               $email = $get_artisans[$x]->email;
@@ -123,6 +122,7 @@ if (isset($_POST['find'])) {
               $address = $get_artisans[$x]->address;
            ?>
 
+           <!-- the search result is displayed in a sweet design template -->
            <div class="row clients">
 
              <div class="col-md-8">
@@ -144,9 +144,14 @@ if (isset($_POST['find'])) {
                      <?php echo $phone; ?>
                    </span>
                  </p>
+                 <a href="#request<?php echo $username; ?>" data-toggle="modal" data-target="#request<?php echo $username; ?>">
+                   <button type="button" name="requestBtn" class="btn btn-primary findOut">Request</button>
+                 </a>
                </div>
+               <!-- geneartes an individual modal for each search result for request purposes -->
+               <?php include 'resources/clientModal.php'; ?>
              </div>
-
+             <!-- displays the artisan image for identification -->
              <div class="col-md-4">
                <img src="<?php echo 'user/'.$image; ?>" alt="" class="img img-responsive center-block img-thumbnail">
              </div>
@@ -155,9 +160,11 @@ if (isset($_POST['find'])) {
 
           <?php
             }
+            // session_destroy();
           ?>
         <?php } else {; ?>
           <!-- when no result is returned form database -->
+          <!-- this also helps to provide php errors from diisplaying -->
           <div class="clients">
             <div class="header">
               <h2>No result match</h2>
@@ -167,7 +174,7 @@ if (isset($_POST['find'])) {
       </div>
 
       <div class="col-md-4">
-
+        <!-- ads from client and information goes here, as well as frequent search and ratings -->
       </div>
 
     </div>
