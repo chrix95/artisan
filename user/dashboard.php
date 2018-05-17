@@ -5,19 +5,14 @@
 
 <div class="main-area">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row hidden-lg hidden-md">
+      <div class="col-md-12">
         <h3>
           <?php
-            $get = $_SESSION['details']->othername;
-
-            $name = explode(" ", $get);
-
-            echo "Hi, " .$name[0]; ?>
+            $surname = $_SESSION['details']->surname;
+            $othername = $_SESSION['details']->othername;
+            echo "Hi, " .$surname. " " .$othername; ?>
         </h3>
-      </div>
-      <div class="col-md-6">
-        <h4>This is your dashboard</h4>
       </div>
     </div>
   </div>

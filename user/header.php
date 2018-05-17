@@ -49,6 +49,12 @@
 						<li>
 							<a href="dashboard.php">Dashoard</a>
 						</li>
+						<li class="hidden-lg hidden-md">
+							<a href="message.php">Messsage</a>
+						</li>
+						<li class="hidden-lg hidden-md">
+							<a href="profile.php">Profile</a>
+						</li>
 						<li>
 							<a href="settings.php">Settings</a>
 						</li>
